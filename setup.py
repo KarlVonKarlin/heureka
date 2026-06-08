@@ -17,6 +17,6 @@ setup(
     install_requires=(
         'rabbitmq',
         'pika',
-        'psycopg2'
+        'psycopg2-binary'
     )
 )

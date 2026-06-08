@@ -2,13 +2,19 @@ version: '3.8'
 
 services:
 
-  # consumer:
-  #   build:
-  #     context: .
-  #     dockerfile: dockerfile
-  #   depends_on:
-  #     db:
-  #       condition: service_started
+  consumer:
+    build:
+      context: .
+      dockerfile: dockerfile
+    depends_on:
+      - db
+      - rabbitmq
+    environment:
+      POSTGRES_DB: "parameters"
+      POSTGRES_HOST: "pghost"
+      POSTGRES_USER: "user_name"
+      POSTGRES_PASSWORD: "user_password"
+      RABBITMQ_HOST: "rabbitmq"
 
   rabbitmq:
     image: rabbitmq:3.10.23-management

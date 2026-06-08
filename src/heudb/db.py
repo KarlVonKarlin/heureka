@@ -10,10 +10,10 @@ class Database():
     
 
     def __init__(self,
-                 database: str = "postgres",
-                 host: str = "pghost",
-                 user: str = "user_name",
-                 password: str = "user_password",
+                 database: str = os.environ.get('POSTGRES_DB', 'parameters'),
+                 host: str = os.environ.get('POSTGRES_HOST', 'pghost'),
+                 user: str = os.environ.get('POSTGRES_USER', 'user_name'),
+                 password: str = os.environ.get('POSTGRES_PASSWORD', 'user_password'),
                  port: str = "5432"):
         """PostgreSQL handler. Implements basic database operations.
 
