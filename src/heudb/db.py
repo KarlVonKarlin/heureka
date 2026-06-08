@@ -35,15 +35,22 @@ class Database():
 
         :returns: Database connection handle.
         """
-        print(self.host)
-        conn = psycopg2.connect(database=self.database,
-                                host=self.host,
-                                user=self.user,
-                                password=self.password,
-                                port=self.port)
-        # autocommit is not safe practice. Using here for simplicity.
-        conn.autocommit = True
-        return conn
+        delay = 2
+        for attempt in range(10):
+            try:
+                conn = psycopg2.connect(database=self.database,
+                                        host=self.host,
+                                        user=self.user,
+                                        password=self.password,
+                                        port=self.port)
+                return conn
+            except psycopg2.OperationalError:
+                if attempt < 9:
+                    LOG.warning(f'Postgres not ready, retrying in {delay}s... ({attempt + 1}/10)')
+                    time.sleep(delay)
+                    delay = min(delay * 2, 30)
+                else:
+                    raise
 
     def create_tables(self) -> None:
         """Create predefined tables offers, attributes and legacy.

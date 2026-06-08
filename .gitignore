@@ -4,3 +4,4 @@ __pycache__/
 .egg-info
 build/
 .venv/
+k8s/secret.yaml

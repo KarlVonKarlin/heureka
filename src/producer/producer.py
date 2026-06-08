@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 from pathlib import Path
 
 from resources.resources import rabbitmq_connect
@@ -9,7 +10,7 @@ LOG = logging.getLogger(__name__)
 
 class Producer:
 
-    def __init__(self, host: str = 'localhost', queue_name: str = 'default'):
+    def __init__(self, host: str = os.environ.get('RABBITMQ_HOST', 'localhost'), queue_name: str = 'default'):
         """Message producer for RabbitMQ broker.
         
         :param host: Hostname (default: 'localhost')
