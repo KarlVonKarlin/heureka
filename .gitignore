@@ -5,3 +5,8 @@ __pycache__/
 build/
 .venv/
 k8s/secret.yaml
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfvars
