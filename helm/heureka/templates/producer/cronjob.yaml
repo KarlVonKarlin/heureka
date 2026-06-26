@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: producer
+  namespace: {{ .Values.namespace }}
+spec:
+  schedule: {{ .Values.producer.schedule | quote }}
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: producer
+              image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command: ["python3", "./src/producer/producer.py"]
+              env:
+                - name: RABBITMQ_HOST
+                  valueFrom:
+                    configMapKeyRef:
+                      name: heureka-config
+                      key: RABBITMQ_HOST

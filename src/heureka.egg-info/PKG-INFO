@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: heureka
+Version: 1.0.0
+Author: Karel Zeman
+Requires-Dist: rabbitmq
+Requires-Dist: pika
+Requires-Dist: psycopg2-binary
+Dynamic: author
+Dynamic: requires-dist

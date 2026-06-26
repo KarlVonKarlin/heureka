@@ -1,0 +1,24 @@
+namespace: heureka
+
+image:
+  name: ghcr.io/karlvonkarlin/heureka
+  tag: latest
+  pullPolicy: Always
+
+postgres:
+  database: parameters
+  host: postgres
+  storage: 1Gi
+
+rabbitmq:
+  host: rabbitmq
+  storage: 1Gi
+
+credentials:
+  postgresUser: user_name
+  postgresPassword: user_password
+  rabbitmqUser: guest
+  rabbitmqPassword: guest
+
+producer:
+  schedule: "*/5 * * * *"

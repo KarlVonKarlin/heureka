@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: heureka-config
+  namespace: {{ .Values.namespace }}
+data:
+  POSTGRES_DB: {{ .Values.postgres.database }}
+  POSTGRES_HOST: {{ .Values.postgres.host }}
+  RABBITMQ_HOST: {{ .Values.rabbitmq.host }}

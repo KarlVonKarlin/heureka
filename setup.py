@@ -17,6 +17,7 @@ setup(
     install_requires=(
         'rabbitmq',
         'pika',
-        'psycopg2-binary'
+        'psycopg2-binary',
+        'prometheus-client'
     )
 )
